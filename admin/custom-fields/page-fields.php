@@ -29,7 +29,7 @@ function cmb2_pagina_principal() {
         'show_on'    => array(
             'key' => 'id',
             'value' => $pagina_id,
-        ), // Muestra los nombres de los campos
+        ),
     ) );
 
     $cmb11->add_field( array(
@@ -144,7 +144,12 @@ function cmb2_pagina_nosotros() {
         'object_types'  => array( 'page' ),
         'context'       => 'normal',
         'priority'      => 'default',
-        'show_names'    => true
+        'show_on'      => array(
+            'key'      => 'page-template',
+            'value'    => array(
+                'page-nosotros.php',
+            ))
+        
     ) );
 
     $cmb2->add_field( array(
