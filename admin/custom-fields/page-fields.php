@@ -11,29 +11,6 @@ if ( ! function_exists( 'my_first_cmb2_metabox' ) ){
     /**
      * Hook in and add a demo metabox. Can only happen on the 'cmb2_admin_init' or 'cmb2_init' hook.
      */
-    function my_first_cmb2_metabox() {
-
-        $prefix = 'my_first_metabox';
-        
-        // Sample custom metabox registration
-        $plugin_slug_metabox = new_cmb2_box( array(
-            'id'            => $prefix,
-            'title'         => esc_html__( 'My first metabox', 'plugin-slug' ),
-            'object_types'  => array( 'page' ), // Post type
-            'context'       => 'normal',
-            'priority'      => 'default',
-            'show_names'    => true, // Show field names on the left
-        ) );
-
-        // Sample custom field into the custom metabox
-        $plugin_slug_metabox->add_field( array(
-            'name'       => esc_html__( 'Custom Text Field', 'plugin-slug' ),
-            'desc'       => esc_html__( 'Write something funny or simply Hello world !', 'plugin-slug' ),
-            'id'         => $prefix . '_custom_text_field',
-            'type'       => 'text',
-        ) );
-    }
-    add_action( 'cmb2_admin_init', 'my_first_cmb2_metabox' );
 
 }
 add_action( 'cmb2_admin_init', 'cmb2_pagina_principal' );
@@ -43,7 +20,7 @@ function cmb2_pagina_principal() {
     $pagina_id= get_option('page_on_front');
 
     // Registro del metabox personalizado
-    $cmb = new_cmb2_box( array(
+    $cmb11 = new_cmb2_box( array(
         'id'            => $prefix,
         'title'         => esc_html__( 'Contenido de la pagina de inicio', 'custom_metabox' ),
         'object_types'  => array( 'page' ),
@@ -52,49 +29,49 @@ function cmb2_pagina_principal() {
         'show_on'    => array(
             'key' => 'id',
             'value' => $pagina_id,
-        ), // Muestra los nombres de los campos
+        ),
     ) );
 
-    $cmb->add_field( array(
+    $cmb11->add_field( array(
         'name'       => esc_html__( 'Titulo que describe la seccion' ),
         'desc'       => esc_html__( 'describe la seccion' ),
         'id'         => $prefix . 'titulo',
         'type'       => 'text',
     ) );
-    $cmb->add_field( array(
+    $cmb11->add_field( array(
         'name'       => esc_html__( 'Descripcion de la seccion' ),
         'desc'       => esc_html__( 'Escribe el Slogan de tu pagina' ),
         'id'         => $prefix . 'slogan',
         'type'       => 'text',
     ) );
-    $cmb->add_field( array(
+    $cmb11->add_field( array(
         'name'       => esc_html__( 'Texto descriptivo' ),
         'desc'       => esc_html__( 'Escribe una descripcion de tu pagina' ),
         'id'         => $prefix . 'texto',
         'type'       => 'textarea',
     ) );
     //botones
-    $cmb->add_field( array(
+    $cmb11->add_field( array(
         'name'       => esc_html__( 'Boton de ayuda' ),
         'desc'       => esc_html__( 'Aqui puedes poner el texto para tu boton de obtener solucion' ),
         'id'         => $prefix . 'boton_ayuda',
         'type'       => 'text',
     ) );
 
-    $cmb->add_field( array(
+    $cmb11->add_field( array(
         'name'       => esc_html__( 'Boton Video' ),
         'desc'       => esc_html__( 'Escribe lo que quieres que diga el boton' ),
         'id'         => $prefix . 'boton_video',
         'type'       => 'text',
     ) );
-    $cmb->add_field( array(
+    $cmb11->add_field( array(
         'name'       => esc_html__( 'Boton Leer mas' ),
         'desc'       => esc_html__( 'Escribe lo que quieres que diga el segundo boton' ),
         'id'         => $prefix . 'boton_leer',
         'type'       => 'text',
     ) );
     //botones links
-    $cmb->add_field( array(
+    $cmb11->add_field( array(
         'name' => esc_html__( 'link del boton Ver video' ),
         'desc' => esc_html__( 'Agrega la URL del tu video de demostracion'),
         'id'   => $prefix . 'Video_url',
@@ -104,19 +81,19 @@ function cmb2_pagina_principal() {
 
 
     //Descripcion 2
-    $cmb->add_field( array(
+    $cmb11->add_field( array(
         'name'       => esc_html__( 'Titulo que describe la segunda seccion' ),
         'desc'       => esc_html__( 'describe la seccion 2' ),
         'id'         => $prefix . 'titulo2',
         'type'       => 'text',
     ) );
-    $cmb->add_field( array(
+    $cmb11->add_field( array(
         'name'       => esc_html__( 'Descripcion de la segunda seccion' ),
         'desc'       => esc_html__( 'Escribe el segundo Slogan de tu pagina' ),
         'id'         => $prefix . 'slogan2',
         'type'       => 'text',
     ) );
-    $cmb->add_field( array(
+    $cmb11->add_field( array(
         'name'       => esc_html__( 'Segundo Texto descriptivo' ),
         'desc'       => esc_html__( 'Escribe una segunda descripcion de tu pagina' ),
         'id'         => $prefix . 'texto2',
@@ -125,23 +102,30 @@ function cmb2_pagina_principal() {
 
     //Imagenes de fondo
 
-    $cmb->add_field( array(
+    $cmb11->add_field( array(
         'name'      => 'Imagen principal de carousel',
         'desc'      => 'sube una imagen o ingresa su URL.',
         'id'        => $prefix . 'bg_carousel',
         'type'      => 'file',
     ));
 
-    $cmb->add_field( array(
+    $cmb11->add_field( array(
         'name'      => 'Imagen de fondo',
         'desc'      => 'subir imagen o ingresa su URL.',
         'id'        => $prefix . 'bg_imagen1',
         'type'      => 'file',
     ));
-    $cmb->add_field( array(
+    $cmb11->add_field( array(
         'name'      => 'Imagen de fondo 2',
         'desc'      => 'subir imagen o ingresa su URL.',
         'id'        => $prefix . 'bg_imagen2',
+        'type'      => 'file',
+    ));
+
+    $cmb11->add_field( array(
+        'name'      => 'Imagen de fondo breadcrum',
+        'desc'      => 'subir imagen o ingresa su URL.',
+        'id'        => $prefix . 'bg_breadcrum',
         'type'      => 'file',
     ));
     
@@ -160,7 +144,12 @@ function cmb2_pagina_nosotros() {
         'object_types'  => array( 'page' ),
         'context'       => 'normal',
         'priority'      => 'default',
-        'show_names'    => true
+        'show_on'      => array(
+            'key'      => 'page-template',
+            'value'    => array(
+                'page-nosotros.php',
+            ))
+        
     ) );
 
     $cmb2->add_field( array(
